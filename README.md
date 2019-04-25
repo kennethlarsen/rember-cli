@@ -15,3 +15,11 @@ Expect the code to be awful - I'm learning as I go...
 * Stable
 * An official project
 * A replacement of Ember CLI
+
+## How to install
+
+`cargo install rember`
+
+Supported features:
+
+`rember new project-name` will generate a new Ember application.
