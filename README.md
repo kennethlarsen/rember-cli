@@ -22,4 +22,4 @@ Expect the code to be awful - I'm learning as I go...
 
 Supported features:
 
-`rember new project-name` will generate a new Ember application.
+`rember new project-name` will generate a new Ember application. The next `npm install` step will fail because this tool doesn't yet dynamically change the project name in `package.json`
