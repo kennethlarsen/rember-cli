@@ -10,7 +10,7 @@ homepage = "https://github.com/kennethlarsen/rember-cli"
 repository = "https://github.com/kennethlarsen/rember-cli"
 keywords = ["cli", "ember"]
 categories = ["command-line-utilities"]
-
+build = "build.rs"
 
 [dependencies]
 clap = "2.26.0"
@@ -20,3 +20,8 @@ fs_extra = "1.1.0"
 assert_cmd = "0.11.1"
 assert_fs = "0.11"
 predicates = "1.0"
+include_dir = "0.2.1"
+
+[build-dependencies]
+fs_extra = "1.1.0"
+walkdir = "2"
