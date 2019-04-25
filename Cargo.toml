@@ -2,7 +2,15 @@
 name = "rember"
 version = "0.1.0"
 authors = ["Kenneth Larsen <hello@kennethlarsen.org>"]
+description = "A WIP clone of Ember CLI in Rust"
 edition = "2018"
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+homepage = "https://github.com/kennethlarsen/rember-cli"
+repository = "https://github.com/kennethlarsen/rember-cli"
+keywords = ["cli", "ember"]
+categories = ["command-line-utilities"]
+
 
 [dependencies]
 clap = "2.26.0"
