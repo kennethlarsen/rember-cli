@@ -8,7 +8,7 @@ pub fn generate_new_application(name: &str) -> Result<(), fs_extra::error::Error
     let app_path = format!("{}", name);
     let mut options = dir::CopyOptions::new();
     let mut from_paths = Vec::new();
-    let root_path = env::var("OUT_DIR").unwrap();
+    let root_path = env!("OUT_DIR");
     options.copy_inside = true;
 
     for entry in WalkDir::new(format!("{}/fixtures", root_path)) {
