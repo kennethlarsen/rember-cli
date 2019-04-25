@@ -15,3 +15,12 @@ Expect the code to be awful - I'm learning as I go...
 * Stable
 * An official project
 * A replacement of Ember CLI
+
+## How to install
+
+`cargo install rember`
+
+Supported features:
+
+`rember new project-name` will generate a new Ember application. The next `npm install` step will fail because this tool doesn't yet dynamically change the project name in `package.json`
+Command only works if you clone the project, not from Cargo yet.
