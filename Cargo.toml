@@ -1,0 +1,14 @@
+[package]
+name = "rember"
+version = "0.1.0"
+authors = ["Kenneth Larsen <hello@kennethlarsen.org>"]
+edition = "2018"
+
+[dependencies]
+clap = "2.26.0"
+indicatif = "0.11.0"
+walkdir = "2"
+fs_extra = "1.1.0"
+assert_cmd = "0.11.1"
+assert_fs = "0.11"
+predicates = "1.0"
