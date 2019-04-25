@@ -2,15 +2,16 @@ use std::fs;
 use walkdir::WalkDir;
 use fs_extra::dir;
 use fs_extra::copy_items;
+use std::env;
 
 pub fn generate_new_application(name: &str) -> Result<(), fs_extra::error::Error> {
     let app_path = format!("{}", name);
     let mut options = dir::CopyOptions::new();
     let mut from_paths = Vec::new();
-
+    let root_path = env::var("OUT_DIR").unwrap();
     options.copy_inside = true;
 
-    for entry in WalkDir::new("fixtures") {
+    for entry in WalkDir::new(format!("{}/fixtures", root_path)) {
         let entry = entry.unwrap();
         let path = entry.path().display().to_string();
         let clean_path = path.replace("fixtures/", &format!("{}/", name));
