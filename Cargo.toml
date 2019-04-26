@@ -1,6 +1,6 @@
 [package]
 name = "rember"
-version = "0.1.5"
+version = "0.1.6"
 authors = ["Kenneth Larsen <hello@kennethlarsen.org>"]
 description = "A WIP clone of Ember CLI in Rust"
 edition = "2018"

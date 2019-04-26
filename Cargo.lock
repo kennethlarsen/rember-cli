@@ -598,7 +598,7 @@ dependencies = [
 
 [[package]]
 name = "rember"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "assert_cmd 0.11.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "assert_fs 0.11.3 (registry+https://github.com/rust-lang/crates.io-index)",
