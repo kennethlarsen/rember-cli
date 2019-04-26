@@ -29,6 +29,7 @@ Goal for version 1 (classic app structure):
 | ember serve    | ❌                                                                                 |
 
 
+Read more in [concerns.md](concerns.md)
 
 ## Want to help?
 
