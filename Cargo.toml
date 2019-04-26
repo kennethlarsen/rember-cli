@@ -1,6 +1,6 @@
 [package]
 name = "rember"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["Kenneth Larsen <hello@kennethlarsen.org>"]
 description = "A WIP clone of Ember CLI in Rust"
 edition = "2018"
@@ -22,6 +22,7 @@ assert_cmd = "0.11.1"
 assert_fs = "0.11"
 predicates = "1.0"
 include_dir = "0.2.1"
+directories = "1.0"
 
 [build-dependencies]
 fs_extra = "1.1.0"

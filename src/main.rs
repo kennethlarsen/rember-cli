@@ -3,7 +3,7 @@ use rember::new::{generate_new_application};
 
 fn main() {
     let matches = clap_app!(myapp =>
-        (version: "0.1.0")
+        (version: "0.1.5")
         (author: "Kenneth Larsen <hello@kennethlarsen.org>")
         (about: "Rust clone of Ember CLI")
         (@subcommand new =>
