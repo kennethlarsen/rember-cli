@@ -11,6 +11,7 @@ repository = "https://github.com/kennethlarsen/rember-cli"
 keywords = ["cli", "ember"]
 categories = ["command-line-utilities"]
 build = "build.rs"
+include = ["fixtures/**/*"]
 
 [dependencies]
 clap = "2.26.0"
