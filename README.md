@@ -20,9 +20,15 @@ Expect the code to be awful - I'm learning as I go...
 
 `cargo install rember`
 
-Supported features:
+Goal for version 1:
 
-`rember new project-name` will generate a new Ember application.
+| Feature        | Status                                                                            |
+|----------------|-----------------------------------------------------------------------------------|
+| ember new      | ⚠ `ember new project-name` works in most cases, but is missing support for flags. |
+| ember generate | ❌                                                                                 |
+| ember serve    | ❌                                                                                 |
+
+
 
 ## Want to help?
 
