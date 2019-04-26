@@ -12,7 +12,7 @@ Expect the code to be awful - I'm learning as I go...
 
 ## What this is not
 
-* Stable
+* Stable - it probably won't work on your machine.
 * An official project
 * A replacement of Ember CLI
 
@@ -22,4 +22,10 @@ Expect the code to be awful - I'm learning as I go...
 
 Supported features:
 
-`rember new project-name` will generate a new Ember application. The next `npm install` step will fail because this tool doesn't yet dynamically change the project name in `package.json`
+`rember new project-name` will generate a new Ember application.
+
+## Want to help?
+
+* Give the supported features a try and report bugs
+* Learning Rust as well? Reach out to me and we can work on this together
+* Are you a Rust expert? Please review my code and provide feedback.
