@@ -20,7 +20,7 @@ Expect the code to be awful - I'm learning as I go...
 
 `cargo install rember`
 
-Goal for version 1:
+Goal for version 1 (classic app structure):
 
 | Feature        | Status                                                                            |
 |----------------|-----------------------------------------------------------------------------------|
