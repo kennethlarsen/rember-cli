@@ -1,10 +1,8 @@
-use rember::*;
 use std::process::Command;
 use assert_cmd::prelude::*;
 use assert_fs;
 use assert_fs::prelude::*;
 use predicates::prelude::*;
-use std::path::Path;
 
 #[test]
 fn calling_rember_without_args() {
