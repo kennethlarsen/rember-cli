@@ -5,7 +5,7 @@ use super::utils::{update_values_in_files, create_progress_bar};
 use std::process::Command;
 use std::env;
 
-pub fn generate_new_application(name: &str) -> Result<(), fs_extra::error::Error> {
+pub fn generate_new_application(name: &str, install_dependencies: bool) -> Result<(), fs_extra::error::Error> {
     let mut options = dir::CopyOptions::new();
     let mut from_paths = Vec::new();
     let project_name = format!("{}-{}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
@@ -33,12 +33,14 @@ pub fn generate_new_application(name: &str) -> Result<(), fs_extra::error::Error
     progress_bar.finish();
     env::set_current_dir(format!("{}/", name)).expect("Couldn't find the newly generated project folder.");
 
-    install_dependencies();
+    if install_dependencies {
+        npm_install();
+    }
 
     Ok(())
 }
 
-fn install_dependencies() {
+fn npm_install() {
     let progress_bar = create_progress_bar(false, "🚚 Running npm install...", None);
     let npm_install = Command::new("npm")
         .arg("install")
