@@ -9,6 +9,7 @@ fn main() {
         (@subcommand new =>
             (about: "generates a new Ember application")
             (@arg name: +required "The name of your application")
+            (@arg skip_npm: --skip "Skips npm install when generating a new Ember application")
         )
     ).get_matches();
 
@@ -16,7 +17,11 @@ fn main() {
         if matches.is_present("name") {
             let name = matches.value_of("name").unwrap();
 
-            generate_new_application(name).expect("Generating project failed.");
+            if matches.is_present("skip_npm") {
+                generate_new_application(name, false).expect("Generating project failed.");
+            } else {
+                generate_new_application(name, true).expect("Generating project failed.");
+            }
 
         } else {
             println!("Error");
