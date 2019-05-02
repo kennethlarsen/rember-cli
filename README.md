@@ -24,7 +24,7 @@ Goal for version 1 (classic app structure):
 
 | Feature        | Status                                                                            |
 |----------------|-----------------------------------------------------------------------------------|
-| ember new      | ⚠ `ember new project-name` works in most cases, but is missing support for flags. |
+| ember new      | ⚠ `rember new project-name` works in most cases, but is missing support for flags. |
 | ember generate | ❌                                                                                 |
 | ember serve    | ❌                                                                                 |
 
