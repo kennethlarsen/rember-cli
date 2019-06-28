@@ -22,6 +22,7 @@ pub fn generate_new_application(name: &str, install_dependencies: bool) -> Resul
         progress_bar.inc(scaffold_progress);
         let entry = entry.unwrap();
         let path = entry.path().display().to_string();
+        println!("{}", path);
         from_paths.push(path);
     }
 

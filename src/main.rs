@@ -1,5 +1,6 @@
 use clap::{clap_app};
 use rember::new::{generate_new_application};
+use rember::serve::{start};
 
 fn main() {
     let matches = clap_app!(myapp =>
@@ -10,6 +11,9 @@ fn main() {
             (about: "generates a new Ember application")
             (@arg name: +required "The name of your application")
             (@arg skip_npm: --skip "Skips npm install when generating a new Ember application")
+        )
+        (@subcommand serve =>
+            (about: "starts a development server")
         )
     ).get_matches();
 
@@ -22,9 +26,10 @@ fn main() {
             } else {
                 generate_new_application(name, true).expect("Generating project failed.");
             }
-
         } else {
             println!("Error");
         }
+    } else if let Some(_matches) = matches.subcommand_matches("serve") {
+        start();
     }
 }

@@ -8,6 +8,7 @@ use walkdir::WalkDir;
 const FXITURES_DIR: &str = "./fixtures";
 
 fn main() {
+    println!("BUILDING");
     let mut from_paths = Vec::new();
     let target_dir_path = env::var("OUT_DIR").unwrap();
     let mut options = dir::CopyOptions::new();
@@ -24,7 +25,7 @@ fn main() {
     for entry in WalkDir::new(FXITURES_DIR) {
         let entry = entry.unwrap();
         let path = entry.path().display().to_string();
-        let clean_path = path.replace("./fixtures", &format!("{}/fixtures", &target_dir_path));
+        let clean_path = path.replace("./fixtures", &format!("fixtures"));
         println!("{}", path);
         from_paths.push(path);
     }

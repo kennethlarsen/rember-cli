@@ -22,6 +22,7 @@ assert_cmd = "0.11.1"
 assert_fs = "0.11"
 predicates = "1.0"
 include_dir = "0.2.1"
+actix-web = "0.7"
 
 [build-dependencies]
 fs_extra = "1.1.0"
