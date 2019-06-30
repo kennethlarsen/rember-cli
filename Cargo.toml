@@ -15,6 +15,7 @@ include = ["src/**/*", "Cargo.toml", "fixtures/**/*", "build.rs"]
 
 [dependencies]
 clap = "2.26.0"
+dialoguer = "0.4.0"
 indicatif = "0.11.0"
 walkdir = "2"
 fs_extra = "1.1.0"
