@@ -1,40 +1,27 @@
-use walkdir::WalkDir;
-use fs_extra::dir;
-use fs_extra::copy_items;
-use super::utils::{update_values_in_files, create_progress_bar};
-use std::process::Command;
+use super::utils::{create_progress_bar, update_values_in_files};
+use fs_extra::dir::create;
 use std::env;
+use std::process::Command;
 
-pub fn generate_new_application(name: &str, install_dependencies: bool) -> Result<(), fs_extra::error::Error> {
-    let mut options = dir::CopyOptions::new();
-    let mut from_paths = Vec::new();
-    let project_name = format!("{}-{}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
-    // Need to figure out how to access these resources in a better way.
-    let root_path = format!("{}/registry/src/github.com-1ecc6299db9ec823/{}/fixtures/", env!("CARGO_HOME"), project_name);
-
-    options.copy_inside = true;
-    options.overwrite = true;
-
+pub fn generate_new_application(
+    name: &str,
+    install_dependencies: bool,
+) -> Result<(), fs_extra::error::Error> {
     let progress_bar = create_progress_bar(false, "🗄  Generating files...", Some(23));
+    // Create main app folder
+    create(format!("{}/", name), false);
 
-    for entry in WalkDir::new(root_path) {
-        let scaffold_progress = from_paths.len() as u64;
-        progress_bar.inc(scaffold_progress);
-        let entry = entry.unwrap();
-        let path = entry.path().display().to_string();
-        from_paths.push(path);
-    }
+    generate_app_folder_structure(name);
 
-    copy_items(&from_paths, format!("{}/", name), &options).expect("Error: Couldn't generate files.");
-
-    update_values_in_files("<%= name %>", name, &format!("{}/package.json", name))
-        .expect("Couldn't replace placeholders in generated files.");
+    // update_values_in_files("<%= name %>", name, &format!("{}/package.json", name))
+    //     .expect("Couldn't replace placeholders in generated files.");
 
     progress_bar.finish();
-    env::set_current_dir(format!("{}/", name)).expect("Couldn't find the newly generated project folder.");
+    // env::set_current_dir(format!("{}/", name))
+    //     .expect("Couldn't find the newly generated project folder.");
 
     if install_dependencies {
-        npm_install();
+        // npm_install();
     }
 
     Ok(())
@@ -50,5 +37,29 @@ fn npm_install() {
 
     if npm_install.status.success() {
         progress_bar.finish();
+    }
+}
+
+fn generate_app_folder_structure(name: &str) {
+    let folder_names = vec![
+        "app",
+        "app/components",
+        "app/controllers",
+        "app/helpers",
+        "app/models",
+        "app/routes",
+        "app/styles",
+        "app/templates",
+        "config",
+        "public",
+        "tests",
+        "tests/helpers",
+        "tests/integration",
+        "tests/unit",
+        "vendor",
+    ];
+
+    for folder in &folder_names {
+        create(format!("{}/{}", name, folder), false);
     }
 }
