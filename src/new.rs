@@ -1,5 +1,6 @@
 use super::utils::{create_progress_bar, update_values_in_files};
 use fs_extra::dir::create;
+use fs_extra::file::write_all;
 use std::env;
 use std::process::Command;
 
@@ -12,7 +13,7 @@ pub fn generate_new_application(
     create(format!("{}/", name), false);
 
     generate_app_folder_structure(name);
-
+    generate_app_files(name);
     // update_values_in_files("<%= name %>", name, &format!("{}/package.json", name))
     //     .expect("Couldn't replace placeholders in generated files.");
 
@@ -50,6 +51,7 @@ fn generate_app_folder_structure(name: &str) {
         "app/routes",
         "app/styles",
         "app/templates",
+        "app/templates/components",
         "config",
         "public",
         "tests",
@@ -61,5 +63,38 @@ fn generate_app_folder_structure(name: &str) {
 
     for folder in &folder_names {
         create(format!("{}/{}", name, folder), false);
+    }
+}
+
+fn generate_app_files(name: &str) {
+    let file_names = vec![
+        "styles/app.css",
+        "templates/components/application.hbs",
+        "app.js",
+        "index.html",
+        "resolver.js",
+        "router.js",
+        "config/environment.js",
+        "config/optional-features.json",
+        "target.js",
+        "public/robots.txt",
+        "tests/index.html",
+        "tests/test-helper.js",
+        "editorconfig",
+        ".ember-cli",
+        ".eslintignore",
+        ".eslintrc.js",
+        ".template-lintrc.js",
+        ".travis.yml",
+        ".watchmanconfig",
+        "ember-cli-build.js",
+        "gitignore",
+        "package.json",
+        "README.md",
+        "testem.js",
+    ];
+
+    for file in &file_names {
+        write_all(format!("{}/{}", name, file), "");
     }
 }
