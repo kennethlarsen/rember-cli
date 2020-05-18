@@ -2,4 +2,4 @@
 **/*.rs.bk
 .DS_Store
 .vscode/
-/new-project
+/test-app
