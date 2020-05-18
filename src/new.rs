@@ -19,6 +19,21 @@ pub fn generate_new_application(
     update_values_in_files("<%= name %>", name, &format!("{}/package.json", name))
         .expect("Couldn't replace placeholders in generated files.");
 
+    update_values_in_files("<%= name %>", name, &format!("{}/app/index.html", name))
+        .expect("Couldn't replace placeholders in generated files.");
+    update_values_in_files(
+        "<%= namespace %>",
+        name,
+        &format!("{}/app/index.html", name),
+    )
+    .expect("Couldn't replace placeholders in generated files.");
+
+    update_values_in_files(
+        "<%= modulePrefix %>",
+        name,
+        &format!("{}/config/environment.js", name),
+    )
+    .expect("Couldn't replace placeholders in generated files.");
     progress_bar.finish();
     // env::set_current_dir(format!("{}/", name))
     //     .expect("Couldn't find the newly generated project folder.");
@@ -99,10 +114,13 @@ fn generate_app_files(name: &str) {
         format!("{}/app/templates/application.hbs", name),
         templates::get_application_hbs(),
     );
-    write_all(format!("{}/app.js", name), js::get_app_js());
-    write_all(format!("{}/index.html", name), templates::get_index_html());
-    write_all(format!("{}/resolver.js", name), js::get_resolver_js());
-    write_all(format!("{}/router.js", name), js::get_router_js());
+    write_all(format!("{}/app/app.js", name), js::get_app_js());
+    write_all(
+        format!("{}/app/index.html", name),
+        templates::get_index_html(),
+    );
+    write_all(format!("{}/app/resolver.js", name), js::get_resolver_js());
+    write_all(format!("{}/app/router.js", name), js::get_router_js());
     write_all(
         format!("{}/config/environment.js", name),
         js::get_environment_js(),

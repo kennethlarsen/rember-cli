@@ -85,20 +85,13 @@ pub fn get_eslintrc_js() -> &'static str {
           files: [
               '.eslintrc.js',
               '.template-lintrc.js',
-              'ember-cli-build.js',<% if (blueprint !== 'app') { %>
-              'index.js',<% } %>
+              'ember-cli-build.js',
               'testem.js',
               'blueprints/*/index.js',
-              'config/**/*.js'<% if (blueprint === 'app') { %>,
-              'lib/*/index.js'<% } %><% if (blueprint !== 'app') { %>,
-              'tests/dummy/config/**/*.js'<% } %>
-          ],<% if (blueprint !== 'app') { %>
-          excludedFiles: [
-              'addon/**',
-              'addon-test-support/**',
-              'app/**',
-              'tests/dummy/app/**'
-          ],<% } %>
+              'config/**/*.js',
+              'lib/*/index.js',
+              'tests/dummy/config/**/*.js'
+          ],
           parserOptions: {
               sourceType: 'script',
               ecmaVersion: 2015
@@ -106,12 +99,8 @@ pub fn get_eslintrc_js() -> &'static str {
           env: {
               browser: false,
               node: true
-          }<% if (blueprint !== 'app') { %>,
-          plugins: ['node'],
-          rules: Object.assign({}, require('eslint-plugin-node').configs.recommended.rules, {
-              // add your custom rules and overrides for node files here
-          })<% } %>
           }
+        }
       ]
       };"#;
 }
