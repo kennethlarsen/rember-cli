@@ -1,3 +1,4 @@
+use super::fixtures::*;
 use super::utils::{create_progress_bar, update_values_in_files};
 use fs_extra::dir::create;
 use fs_extra::file::write_all;
@@ -13,9 +14,10 @@ pub fn generate_new_application(
     create(format!("{}/", name), false);
 
     generate_app_folder_structure(name);
+    generate_empty_app_files(name);
     generate_app_files(name);
-    // update_values_in_files("<%= name %>", name, &format!("{}/package.json", name))
-    //     .expect("Couldn't replace placeholders in generated files.");
+    update_values_in_files("<%= name %>", name, &format!("{}/package.json", name))
+        .expect("Couldn't replace placeholders in generated files.");
 
     progress_bar.finish();
     // env::set_current_dir(format!("{}/", name))
@@ -66,18 +68,9 @@ fn generate_app_folder_structure(name: &str) {
     }
 }
 
-fn generate_app_files(name: &str) {
+fn generate_empty_app_files(name: &str) {
     let file_names = vec![
-        "styles/app.css",
-        "templates/components/application.hbs",
-        "app.js",
-        "index.html",
-        "resolver.js",
-        "router.js",
-        "config/environment.js",
-        "config/optional-features.json",
-        "target.js",
-        "public/robots.txt",
+        "app/styles/app.css",
         "tests/index.html",
         "tests/test-helper.js",
         "editorconfig",
@@ -97,4 +90,75 @@ fn generate_app_files(name: &str) {
     for file in &file_names {
         write_all(format!("{}/{}", name, file), "");
     }
+}
+
+fn generate_app_files(name: &str) {
+    // Here we write all the files with fixture data from src/fixtures.
+    // It feels very dirty, but it works.
+    write_all(
+        format!("{}/app/templates/application.hbs", name),
+        templates::get_application_hbs(),
+    );
+    write_all(format!("{}/app.js", name), js::get_app_js());
+    write_all(format!("{}/index.html", name), templates::get_index_html());
+    write_all(format!("{}/resolver.js", name), js::get_resolver_js());
+    write_all(format!("{}/router.js", name), js::get_router_js());
+    write_all(
+        format!("{}/config/environment.js", name),
+        js::get_environment_js(),
+    );
+    write_all(
+        format!("{}/config/optional-features.json", name),
+        json::get_optional_features(),
+    );
+    write_all(format!("{}/config/targets.js", name), js::get_target_js());
+    write_all(format!("{}/public/robots.txt", name), txt::get_robots_txt());
+
+    // TODO Move these to the fixtures folder
+    write_all(
+        format!("{}/tests/index.html", name),
+        html::get_test_index_html(),
+    );
+
+    write_all(
+        format!("{}/tests/test-helper.js", name),
+        js::get_test_helper_js(),
+    );
+
+    write_all(
+        format!("{}/.editorconfig", name),
+        config::get_editor_config(),
+    );
+
+    write_all(format!("{}/.ember-cli", name), config::get_ember_cli());
+
+    write_all(
+        format!("{}/.eslintignore", name),
+        config::get_eslint_ignore(),
+    );
+
+    write_all(format!("{}/.eslintrc.js", name), config::get_eslintrc_js());
+
+    write_all(
+        format!("{}/.template-lintrc.js", name),
+        config::get_template_lintrc_js(),
+    );
+
+    write_all(
+        format!("{}/.watchmanconfig", name),
+        config::get_watchmanconfig(),
+    );
+
+    write_all(
+        format!("{}/ember-cli-build.js", name),
+        config::get_ember_cli_build(),
+    );
+
+    write_all(format!("{}/gitignore", name), config::get_gitignore());
+
+    write_all(format!("{}/package.json", name), json::get_package_json());
+
+    write_all(format!("{}/README.md", name), config::get_readme_md());
+
+    write_all(format!("{}/testem.js", name), js::get_testem_js());
 }
