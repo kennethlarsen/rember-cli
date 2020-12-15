@@ -156,3 +156,9 @@ pub fn get_testem_js() -> &'static str {
       }
       };"#;
 }
+
+pub fn generate_component_js() -> &'static str {
+  return r#"
+  
+  "#;
+}

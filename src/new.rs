@@ -88,7 +88,6 @@ fn generate_empty_app_files(name: &str) {
         "app/styles/app.css",
         "tests/index.html",
         "tests/test-helper.js",
-        "editorconfig",
         ".ember-cli",
         ".eslintignore",
         ".eslintrc.js",
