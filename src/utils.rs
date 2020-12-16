@@ -38,3 +38,11 @@ pub fn create_progress_bar(quiet_mode: bool, msg: &str, length: Option<u64>) -> 
 
     bar
 }
+
+pub fn uppercase_first_letter(s: &str) -> String {
+    let mut c = s.chars();
+    match c.next() {
+        None => String::new(),
+        Some(f) => f.to_uppercase().collect::<String>() + c.as_str(),
+    }
+}
